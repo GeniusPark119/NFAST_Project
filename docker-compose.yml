@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  back:
+    container_name: be
+    build: ./backend
+    ports:
+      - "8084:8080"
+    depends_on:
+      - db
+    restart: on-failure
+
+  front:
+    container_name: fe
+    build: ./frontend
+    ports:
+      - "8083:3000"
+    restart: on-failure
+
+  db:
+    container_name: db
+    image: mysql:8.0.30
+    ports:
+      - "3306:3306"
+    volumes:
+      - /db:/var/lib/mysql
+      - /db/config/my.cnf:/etc/mysql/my.cnf
+    environment:
+      MYSQL_DATABASE: nfast
+      MYSQL_ROOT_PASSWORD: 1004cjstk
+      MYSQL_USER: a307
+      MYSQL_PASSWORD: a307a307
+      LANG: C.UTF_8
+    restart: on-failure
+    command:
+      - --character-set-server=utf8
+      - --collation-server=utf8_unicode_ci
+#      - --init_connect = "SET collation_connection = utf8_general_ci"
+#      - --init_connect = "SET NAMES utf8"

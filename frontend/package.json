@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-images-upload": "^1.2.8",
+    "redux-persist": "^6.0.0"
+  }
+}
